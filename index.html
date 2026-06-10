@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire Réparation Véhicules</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="modal">
+  <div class="modal-header">
+    <div class="header-left">
+      <div class="header-icon"><i class="ti ti-car"></i></div>
+      <div>
+        <div class="header-title">SAISIE RÉPARATION VÉHICULES &amp; ENGINS</div>
+        <div class="header-sub">Formulaire de gestion de maintenance</div>
+      </div>
+    </div>
+    <button class="btn-close" onclick="quitForm()" title="Fermer"><i class="ti ti-x"></i></button>
+  </div>
+
+  <div class="modal-body">
+
+    <!-- Ligne 1 : Marque + Matricule + Kilométrage -->
+    <div class="row">
+      <div class="field" style="flex: 1.2;">
+        <label><i class="ti ti-truck"></i> Marque véhicule</label>
+        <select id="marque">
+          <option value="">-- Sélectionner --</option>
+          <option>CAMION FORD</option>
+          <option>CAMION ISUZU</option>
+          <option>CAMION Mitsubishi</option>
+          <option>CAMION Fuso</option>
+          <option>CAMION EXPRESS</option>
+          <option>VOITURE dacia</option>
+          <option>CAMION Iveco</option>
+          <option>CITROEN</option>
+        </select>
+      </div>
+      <div class="field" style="flex: 1;">
+        <label><i class="ti ti-license"></i> Matricule</label>
+        <input type="text" id="matricule" placeholder="ex: 31511_A_36">
+      </div>
+      <div class="field" style="flex: 0.7;">
+        <label><i class="ti ti-dashboard"></i> Kilométrage</label>
+        <div class="km-wrapper">
+          <input type="number" id="kilometrage" placeholder="0">
+          <span class="km-suffix">km</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ligne 2 : Chauffeur + Informations -->
+    <div class="info-row">
+      <div class="field">
+        <label><i class="ti ti-user"></i> Chauffeur</label>
+        <input type="text" id="chauffeur" placeholder="Nom du chauffeur...">
+      </div>
+      <div class="field">
+        <label><i class="ti ti-map-pin"></i> Départ</label>
+        <input type="text" id="depart" placeholder="Aoulouz, Agadir, etc...">
+      </div>
+      <div class="field">
+        <label><i class="ti ti-map-pin-2"></i> Destination</label>
+        <input type="text" id="destination" placeholder="Agadir, Aoulouz, etc...">
+      </div>
+      <div class="field">
+        <label><i class="ti ti-flag"></i> L'Arrivée</label>
+        <input type="text" id="arrivee" placeholder="Agadir, Aoulouz, etc...">
+      </div>
+    </div>
+
+    <!-- Gazoil -->
+    <div class="row">
+      <div class="field" style="flex: 1;">
+        <label>
+          <span class="fuel-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 22V8a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v14"/>
+              <path d="M3 22h11"/>
+              <path d="M14 10h2a2 2 0 0 1 2 2v3a1 1 0 0 0 2 0V9l-3-3"/>
+              <rect x="6" y="11" width="5" height="4" rx="1"/>
+            </svg>
+            Gazoil
+          </span>
+        </label>
+        <div class="price-wrapper">
+          <span class="price-prefix">MAD</span>
+          <input type="number" id="gazoil_prix" placeholder="0.00" step="0.01">
+        </div>
+      </div>
+      <div class="field" style="flex: 1;">
+        <label><i class="ti ti-map-pin"></i> Où (Gazoil)</label>
+        <input type="text" id="gazoil_lieu" placeholder="Agadir, Aoulouz, etc...">
+      </div>
+      <div class="field" style="flex: 1;"></div>
+    </div>
+
+    <!-- Ligne 3 : Pièce de Rechange + Entretien -->
+    <div class="section-grid">
+
+      <!-- Pièce de Rechange -->
+      <div class="section-card pieces">
+        <div class="section-title">
+          <i class="ti ti-settings"></i>
+          Pièce de Rechange
+        </div>
+        <div class="section-fields">
+          <div class="field">
+            <label>Nature de la pièce</label>
+            <input type="text" id="nature_piece" placeholder="Ex: Filtre à huile, plaquettes...">
+          </div>
+          <div class="field">
+            <label>Prix d'achat</label>
+            <div class="price-wrapper">
+              <span class="price-prefix">MAD</span>
+              <input type="number" id="prix_achat" placeholder="0.00" step="0.01" style="padding-left: 52px;">
+            </div>
+          </div>
+          <div class="field">
+            <label>Date d'achat</label>
+            <input type="date" id="date_achat">
+          </div>
+        </div>
+      </div>
+
+      <!-- Entretien et Réparation -->
+      <div class="section-card entretien">
+        <div class="section-title">
+          <i class="ti ti-tool"></i>
+          Entretien &amp; Réparation
+        </div>
+        <div class="section-fields">
+          <div class="field">
+            <label>Nature de l'entretien</label>
+            <input type="text" id="nature_entretien" placeholder="Ex: Vidange, révision générale...">
+          </div>
+          <div class="field">
+            <label>Prix entretien</label>
+            <div class="price-wrapper">
+              <span class="price-prefix">MAD</span>
+              <input type="number" id="prix_entretien" placeholder="0.00" step="0.01" style="padding-left: 52px;">
+            </div>
+          </div>
+          <div class="field">
+            <label>Date d'entretien</label>
+            <input type="date" id="date_entretien">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Notes complémentaires -->
+    <div class="field notes-field">
+      <label><i class="ti ti-pencil"></i> Notes complémentaires</label>
+      <textarea id="notes" placeholder="Informations supplémentaires, recommandations, prochaine intervention..."></textarea>
+    </div>
+
+  </div>
+
+  <!-- Boutons footer -->
+  <div class="modal-footer">
+    <button class="btn btn-secondary" onclick="clearForm()">
+      <i class="ti ti-eraser"></i> Effacer
+    </button>
+    <button class="btn btn-excel" onclick="afficherExcel()">
+      <i class="ti ti-table"></i> Afficher Excel
+    </button>
+    <button class="btn btn-print" onclick="imprimerSeulement()">
+      <i class="ti ti-printer"></i> Imprimer
+    </button>
+    <button class="btn btn-primary" onclick="enregistrer()">
+      <i class="ti ti-device-floppy"></i> Enregistrer
+    </button>
+    <button class="btn btn-danger" onclick="quitForm()">
+      <i class="ti ti-logout"></i> Quitter
+    </button>
+  </div>
+</div>
+
+<!-- Notification Toast -->
+<div class="toast" id="toast">
+  <i class="ti ti-check"></i>
+  <span id="toast-msg">Enregistré avec succès!</span>
+</div>
+
+<!-- Tableau Excel (overlay) -->
+<div class="table-overlay" id="tableOverlay">
+  <div class="table-modal">
+    <h3><i class="ti ti-table" style="color: var(--accent2);"></i> Données Enregistrées</h3>
+    <div id="tableContent"></div>
+    <div class="table-footer">
+      <button class="btn btn-secondary" onclick="exportCSV()"><i class="ti ti-download"></i> Exporter CSV</button>
+      <button class="btn btn-primary" onclick="closeTable()"><i class="ti ti-x"></i> Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- FICHE D'IMPRESSION (cachée, s'affiche uniquement à l'impression) -->
+<div id="printArea" class="print-area">
+  <div class="print-header">
+    <div class="print-company">SOCIETE HOUAT NOUR SARL</div>
+    <div class="print-title">FICHE DE RÉPARATION VÉHICULE</div>
+    <hr class="print-line">
+  </div>
+
+  <div class="print-section-label">Informations Véhicule</div>
+  <table class="print-table">
+    <tr>
+      <td class="label-cell">Marque</td>
+      <td class="value-cell" id="p_marque"></td>
+      <td class="label-cell">Matricule</td>
+      <td class="value-cell" id="p_matricule"></td>
+    </tr>
+    <tr>
+      <td class="label-cell">Chauffeur</td>
+      <td class="value-cell" id="p_chauffeur"></td>
+      <td class="label-cell">Kilométrage</td>
+      <td class="value-cell" id="p_kilometrage"></td>
+    </tr>
+    <tr>
+      <td class="label-cell">Départ</td>
+      <td class="value-cell" id="p_depart"></td>
+      <td class="label-cell">Destination</td>
+      <td class="value-cell" id="p_destination"></td>
+    </tr>
+    <tr>
+      <td class="label-cell">Arrivée</td>
+      <td class="value-cell" id="p_arrivee"></td>
+      <td class="label-cell">Gazoil</td>
+      <td class="value-cell" id="p_gazoil"></td>
+    </tr>
+  </table>
+
+  <div class="print-section-label">Pièce de Rechange</div>
+  <table class="print-table">
+    <tr>
+      <td class="label-cell">Nature pièce</td>
+      <td class="value-cell" colspan="3" id="p_nature_piece"></td>
+    </tr>
+    <tr>
+      <td class="label-cell">Prix Achat</td>
+      <td class="value-cell" id="p_prix_achat"></td>
+      <td class="label-cell">Date Achat</td>
+      <td class="value-cell" id="p_date_achat"></td>
+    </tr>
+  </table>
+
+  <div class="print-section-label">Entretien et Réparation</div>
+  <table class="print-table">
+    <tr>
+      <td class="label-cell">Nature entretien</td>
+      <td class="value-cell" colspan="3" id="p_nature_entretien"></td>
+    </tr>
+    <tr>
+      <td class="label-cell">Prix Entretien</td>
+      <td class="value-cell" id="p_prix_entretien"></td>
+      <td class="label-cell">Date Entretien</td>
+      <td class="value-cell" id="p_date_entretien"></td>
+    </tr>
+  </table>
+
+  <div class="print-section-label">Notes Complémentaires</div>
+  <table class="print-table">
+    <tr>
+      <td class="value-cell" colspan="4" id="p_notes" style="min-height: 60px;"></td>
+    </tr>
+  </table>
+
+  <div class="print-footer">
+    <div class="print-sign-box">
+      <div class="sign-label">Responsable</div>
+      <div class="sign-line"></div>
+    </div>
+    <div class="print-date-box">
+      <div class="sign-label">Date d'impression</div>
+      <div class="sign-value" id="p_date_impression"></div>
+    </div>
+    <div class="print-sign-box">
+      <div class="sign-label">Chauffeur</div>
+      <div class="sign-line"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
